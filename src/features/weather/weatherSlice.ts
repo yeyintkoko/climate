@@ -1,34 +1,75 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {ImageSourcePropType} from 'react-native';
+import {createSlice} from '@reduxjs/toolkit';
+
+export interface WeekDayProp {
+    icon: string;
+    day: string;
+    date: string;
+    from: number;
+    to: number;
+}
+
+export interface CityProps {
+    city: string;
+    image: ImageSourcePropType;
+    icon: string;
+    temperature: number;
+    status: string;
+    from: number;
+    to: number;
+    rainy: number;
+    snowy: number;
+    windy: number;
+    cityImageTranslate?: any;
+    cityImageBgTranslate?: any;
+}
+
+export interface SliderItemType {
+    city: string;
+    icon: string;
+    temperature: number;
+    status: string;
+    shadow: string;
+    motionAnim?: any;
+}
 
 export interface WeatherState {
-    value: number;
+    cities: CityProps[];
+    days: WeekDayProp[];
+    sliderItems: SliderItemType[];
 }
 
 const initialState: WeatherState = {
-    value: 0,
+    cities: [],
+    days: [],
+    sliderItems: [],
 };
 
 export const weatherSlice = createSlice({
     name: 'weather',
     initialState,
     reducers: {
-        increment: state => {
-            // Redux Toolkit allows us to write "mutating" logic in reducers. It
-            // doesn't actually mutate the state because it uses the Immer library,
-            // which detects changes to a "draft state" and produces a brand new
-            // immutable state based off those changes
-            state.value += 1;
+        saveWeather(state, action) {
+            return {
+                ...state,
+                cities: action.payload,
+            };
         },
-        decrement: state => {
-            state.value -= 1;
+        saveWeekDays(state, action) {
+            return {
+                ...state,
+                days: action.payload,
+            };
         },
-        incrementByAmount: (state, action: PayloadAction<number>) => {
-            state.value += action.payload;
+        saveSliderItems(state, action) {
+            return {
+                ...state,
+                sliderItems: action.payload,
+            };
         },
     },
 });
 
-// Action creators are generated for each case reducer function
-export const {increment, decrement, incrementByAmount} = weatherSlice.actions;
+export const {saveWeather, saveWeekDays, saveSliderItems} = weatherSlice.actions;
 
 export default weatherSlice.reducer;

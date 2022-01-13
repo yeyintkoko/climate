@@ -1,15 +1,20 @@
-import {StyleSheet, Platform, Dimensions} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 
 const window = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        height: window.height,
     },
     content: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    animatedContent: {
+        flex: 1,
+        height: window.height - 200,
     },
     header: {
         height: 200,
@@ -18,17 +23,18 @@ const styles = StyleSheet.create({
         ...StyleSheet.absoluteFillObject,
         backgroundColor: 'rgba(0,0,0,0.5)',
     },
-    image: {
-        width: 80,
-        height: 80,
-        borderRadius: 40,
+    imageBgWrapper: {
+        height: 200,
+        overflow: 'hidden',
     },
     shadow: {
-        width: 80,
-        height: 80,
-        borderRadius: 40,
+        zIndex: 1,
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+        marginTop: -50,
+        marginBottom: -50,
         alignSelf: 'center',
-        marginTop: -40,
         overflow: 'visible',
         shadowColor: '#000',
         shadowOffset: {
@@ -39,11 +45,22 @@ const styles = StyleSheet.create({
         shadowRadius: 10.32,
         elevation: 16,
     },
+    imageWrapper: {
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+        overflow: 'hidden',
+        backgroundColor: 'gray',
+    },
+    image: {
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+    },
     title: {
         fontSize: 30,
         fontWeight: '600',
-        marginTop: 35,
-        marginBottom: 25,
+        marginTop: 85,
         textAlign: 'center',
     },
     temperature: {
@@ -51,12 +68,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     degree: {
-        fontSize: 65,
+        fontSize: 75,
         fontWeight: '200',
     },
     symbol: {
         marginTop: 10,
-        fontSize: 20,
+        fontSize: 25,
         fontWeight: '300',
     },
     status: {
@@ -74,18 +91,17 @@ const styles = StyleSheet.create({
         fontWeight: '300',
     },
     footer: {
+        flex: 0.5,
         flexDirection: 'row',
     },
     item: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
     },
     itemText: {
         fontSize: 18,
         fontWeight: '400',
         marginTop: 15,
-        marginBottom: Platform.OS === 'ios' ? 80 : 50,
     },
     page: {
         flex: 1,
@@ -98,6 +114,35 @@ const styles = StyleSheet.create({
     dot: {
         fontSize: 18,
         fontWeight: '500',
+    },
+    week: {
+        paddingTop: 35,
+        paddingBottom: 25,
+    },
+    weekDayItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 35,
+        paddingBottom: 35,
+    },
+    day: {
+        flex: 1,
+        paddingLeft: 40,
+    },
+    weekDay: {
+        fontSize: 16,
+        fontWeight: '600',
+        textTransform: 'uppercase',
+    },
+    date: {
+        fontSize: 16,
+        textTransform: 'uppercase',
+    },
+    dayTempr: {
+        marginRight: 15,
+    },
+    temprText: {
+        fontSize: 16,
     },
 });
 

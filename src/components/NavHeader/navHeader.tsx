@@ -5,16 +5,20 @@ import styles from './styles';
 
 interface Props {
     title: string;
+    onMenuPress?: () => void;
+    onSearchPress?: () => void;
+    color?: string;
+    position?: 'absolute' | 'relative';
 }
-const NavHeader: React.FC<Props> = ({title}) => {
+const NavHeader: React.FC<Props> = ({title, onMenuPress, onSearchPress, color, position}) => {
     return (
-        <View style={styles.container}>
-            <TouchableOpacity style={styles.button}>
-                <Icon name="ios-menu" size={24} color="#fafafa" />
+        <View style={[styles.container, {position}]}>
+            <TouchableOpacity style={styles.button} onPress={onMenuPress}>
+                <Icon name="ios-menu" size={24} color={color || '#fafafa'} />
             </TouchableOpacity>
-            <Text style={styles.title}>{title}</Text>
-            <TouchableOpacity style={styles.button}>
-                <Icon name="ios-search" size={24} color="#fafafa" />
+            <Text style={[styles.title, {color: color || '#fafafa'}]}>{title}</Text>
+            <TouchableOpacity style={styles.button} onPress={onSearchPress}>
+                <Icon name="ios-search" size={24} color={color || '#fafafa'} />
             </TouchableOpacity>
         </View>
     );
